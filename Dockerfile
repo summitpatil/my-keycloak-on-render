@@ -13,4 +13,4 @@ ENV KC_HTTP_PORT=8080
 EXPOSE 8080
 
 # Use this as the default CMD
-CMD ["start-dev"]
+CMD ["start-dev", "--http-port=8080", "--hostname-strict=false", "--hostname-strict-https=false"]
