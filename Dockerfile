@@ -9,8 +9,16 @@ ENV KC_DB=dev-file
 # Set the port Keycloak will listen on
 ENV KC_HTTP_PORT=8080
 
+# Force Keycloak to bind to all interfaces
+ENV KC_HOSTNAME=0.0.0.0
+ENV KC_HOSTNAME_PORT=8080
+
+# Copy startup script
+COPY start.sh /opt/keycloak/start.sh
+RUN chmod +x /opt/keycloak/start.sh
+
 # Required: Expose the port explicitly for Render to detect
 EXPOSE 8080
 
-# Use this as the default CMD
-CMD ["start-dev", "--http-port=8080", "--hostname=0.0.0.0", "--hostname-strict=false", "--hostname-strict-https=false"]
+# Use the startup script
+CMD ["/opt/keycloak/start.sh"]
